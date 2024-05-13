@@ -37,3 +37,5 @@ class Empleados():
             print("El cliente se ha eliminado")
         else:
             print("El cliente no se ha encontrado")
+
+#cabron comentalo toca algo
