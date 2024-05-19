@@ -1,4 +1,5 @@
 #Clase Cancha y de mas.
+
 lista_cancha=[]
 class Cancha:
     def __init__(self, numero_cancha, deporte, precio, habilitada):
@@ -11,7 +12,6 @@ class Cancha:
     def __str__(self):
         estado_habilitada = "Habilitada" if self.habilitada else "No habilitada"
         return f"Número de Cancha: {self.numero_cancha}\nDeporte: {self.deporte}\nPrecio: {self.precio}\nEstado: {estado_habilitada}\n"
-
 def crear_cancha():
     numero_cancha=int(input("Dime el numero de la cancha: "))
     deporte=input("Dime el deporte que vas a realizar: ")
@@ -23,15 +23,32 @@ def crear_cancha():
         habilitada = False
     cancha = Cancha(numero_cancha, deporte, precio, habilitada)
     return cancha
-nueva_cancha = crear_cancha()
-print("Cancha habilitada:", nueva_cancha.habilitada)#dice si esta habilitada o no 
-
 def añadir_a_lista_cancha(cancha):
     lista_cancha.append(cancha)
     print("EN la lista de canchas hay: ",len(lista_cancha))
 
-añadir_a_lista_cancha(nueva_cancha)
+class Reserva(Cancha):
+    def __init__(self, numero_cancha, deporte, precio, habilitada, numero_reserva, fecha):
+        super().__init__(numero_cancha, deporte, precio, habilitada)
+        self.numero_reserva=numero_cancha
+        self.fecha=fecha
+def crear_reserva(cancha):
+    numero_reserva=int(input("Dime el numero de la reserva: "))
+    fecha=input("Dime para que fecha quieres la reserva: ")
+    reserva = Reserva(numero_reserva, fecha)
+    cancha.lista_reserva.append(reserva)
 
+nueva_cancha = crear_cancha()
+print("Cancha habilitada:", nueva_cancha.habilitada)#dice si esta habilitada o no 
+añadir_a_lista_cancha(nueva_cancha)
+crear_reserva(nueva_cancha)
+
+
+
+
+
+
+"""
 class Reserva():
     def __init__(self, num_reserva, fecha, cliente, cancha):
         self.num_reserva=num_reserva
@@ -44,6 +61,7 @@ def crear_reserva():
     reserva=Reserva
     num_reserva=int(input("Dime el numero de la reserva: "))
     fecha=input("Dime la fecha que quieres que sea la reserva: ")
+"""
 """
 class Centro():
     def __init__(self, nombre_centro,dir_centro ):
