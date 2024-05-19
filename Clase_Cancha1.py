@@ -38,6 +38,13 @@ def crear_reserva(cancha):
     reserva = Reserva(numero_reserva, fecha)
     cancha.lista_reserva.append(reserva)
 
+def comprobar_cliente(cliente):
+    saldo=int(input("Dime tu saldo: "))
+    if saldo <= -2000:
+        print("No puedes reservar: ")
+    else:
+        print("Si puedes reservar")
+
 nueva_cancha = crear_cancha()
 print("Cancha habilitada:", nueva_cancha.habilitada)#dice si esta habilitada o no 
 añadir_a_lista_cancha(nueva_cancha)
