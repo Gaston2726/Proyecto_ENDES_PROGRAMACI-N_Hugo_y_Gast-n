@@ -1,4 +1,6 @@
 #Clase Cancha y de mas.
+
+lista_cancha=[]
 class Cancha:
     def __init__(self, numero_cancha, deporte, precio, habilitada):
         self.numero_cancha = numero_cancha
@@ -7,9 +9,114 @@ class Cancha:
         self.habilitada = habilitada
         self.lista_reserva = []
         self.lista_empleado = []
-        self.lista_cancha = []
+    def __str__(self):
+        estado_habilitada = "Habilitada" if self.habilitada else "No habilitada"
+        return f"Número de Cancha: {self.numero_cancha}\nDeporte: {self.deporte}\nPrecio: {self.precio}\nEstado: {estado_habilitada}\n"
+def crear_cancha():
+    numero_cancha=int(input("Dime el numero de la cancha: "))
+    deporte=input("Dime el deporte que vas a realizar: ")
+    precio=input("Dime el precio de la cancha: ")
+    habilitada=input("Dime si esta habilitada dicendo si o no: ")
+    if habilitada.lower() == "si":
+        habilitada = True
+    else:
+        habilitada = False
+    cancha = Cancha(numero_cancha, deporte, precio, habilitada)
+    return cancha
+def añadir_a_lista_cancha(cancha):
+    lista_cancha.append(cancha)
+    print("EN la lista de canchas hay: ",len(lista_cancha))
 
-    def agre_reser(self, reserva):
+class Reserva(Cancha):
+    def __init__(self, numero_cancha, deporte, precio, habilitada, numero_reserva, fecha):
+        super().__init__(numero_cancha, deporte, precio, habilitada)
+        self.numero_reserva=numero_cancha
+        self.fecha=fecha
+def crear_reserva(cancha):
+    numero_reserva=int(input("Dime el numero de la reserva: "))
+    fecha=input("Dime para que fecha quieres la reserva: ")
+    reserva = Reserva(numero_reserva, fecha)
+    cancha.lista_reserva.append(reserva)
+
+def comprobar_cliente(cliente):
+    saldo=int(input("Dime tu saldo: "))
+    if saldo <= -2000:
+        print("No puedes reservar: ")
+    else:
+        print("Si puedes reservar")
+
+nueva_cancha = crear_cancha()
+print("Cancha habilitada:", nueva_cancha.habilitada)#dice si esta habilitada o no 
+añadir_a_lista_cancha(nueva_cancha)
+crear_reserva(nueva_cancha)
+
+
+class Centro():
+    def __init__(self,nombre_centro,direccion  ):
+        self.nombre_centro=nombre_centro
+        self.direccion=direccion
+        lista_cancha1=[]
+        lista_clientes=[]
+    
+def menu():
+    centro=Centro
+    centro.nombre_centro=input("Dime el nombre del centro: ")
+    centro.direccion=input("Dime la direccion del centro: ")
+    print("Elige una de las opciones siguientes:\n1 .-Gestión de canchas\n2 .-Gestión de cliente\n3 .-Gestión de reserva\n 4 .-Gestión de empleado\n5 .-Salir del programa ")
+    op1_menu=int(input("Dime que opcion eliges del menu: "))
+    while op1_menu!= 5:
+        if op1_menu==1:
+            pass
+        elif op1_menu==2:
+            pass
+        elif op1_menu==3:
+            pass
+        elif op1_menu==4:
+            pass
+        elif op1_menu==5:
+            print("Se cierra el programa")
+            break
+
+#ac
+"""
+class Reserva():
+    def __init__(self, num_reserva, fecha, cliente, cancha):
+        self.num_reserva=num_reserva
+        self.fecha=fecha
+        self.cliente=cliente
+        self.cancha=cancha
+    def __str__(self):
+        return f"Reserva {self.num_reserva} - Fecha: {self.fecha}, Cliente: {self.cliente.nombre}, Cancha: {self.cancha.numero_cancha}"
+def crear_reserva():
+    reserva=Reserva
+    num_reserva=int(input("Dime el numero de la reserva: "))
+    fecha=input("Dime la fecha que quieres que sea la reserva: ")
+"""
+"""
+class Centro():
+    def __init__(self, nombre_centro,dir_centro ):
+        self.nombre_centro=nombre_centro
+        self.dir_centro=dir_centro
+        self.canchas=[]
+        self.clientes=[]
+
+    def agregar_cancha(self, cancha):
+        self.canchas.append(cancha)
+
+    def agregar_cliente(self, cliente):
+        self.clientes.append(cliente)
+
+# Ejemplo de uso
+if __name__ == "__main__":
+    nueva_cancha = crear_cancha()
+    print("Cancha habilitada:", nueva_cancha.habilitada)
+
+    centro = Centro("Centro Deportivo XYZ", "Calle Principal 123")
+    centro.agregar_cancha(nueva_cancha)
+    print("Número de canchas en el centro:", len(centro.canchas))
+"""
+"""
+def agre_reser(self, reserva):
         self.lista_reserva.append(reserva)
 
     @staticmethod
@@ -33,6 +140,7 @@ class Cancha:
     #hola hugo
 class Centro():
     def __init__(self,nom_centr,dir_centro,)
+"""
 """
 # Ejemplo de uso
 if __name__ == "__main__":
