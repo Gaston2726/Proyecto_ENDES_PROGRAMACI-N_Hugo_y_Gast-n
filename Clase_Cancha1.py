@@ -66,11 +66,29 @@ def menu():
     op1_menu=int(input("Dime que opcion eliges del menu: "))
     while op1_menu!= 5:
         if op1_menu==1:
-            pass
+            print("1 .-Crear cancha\n2 .-Agregar cancha\n3 .-Listar canchas según el tipo de deporte\n4 .-Quitar cancha de lista centro")
+            op2_menu=int(input("Dime que opcione eliges del submenu canchas: "))
+            if op2_menu==1:
+                crear_cancha()
+            elif op2_menu==2:
+                añadir_a_lista_cancha()
+            elif op2_menu==3:
+                pass
+            elif op2_menu==4:
+                pass
         elif op1_menu==2:
             pass
         elif op1_menu==3:
-            pass
+            print("1 .-Crear reserva\n2 .-Listar reserva actuales de cancha\n3 .-Listar reservas de un cliente\n4 .-Mostrar saldo de un cliente")
+            op4_menu=int(input("Dime que opcion eliges del submenu reservas: "))
+            if op2_menu==1:
+                crear_reserva()
+            elif op2_menu==2:
+                comprobar_cliente()
+            elif op2_menu==3:
+                pass
+            elif op2_menu==4:
+                pass           
         elif op1_menu==4:
             pass
         elif op1_menu==5:
