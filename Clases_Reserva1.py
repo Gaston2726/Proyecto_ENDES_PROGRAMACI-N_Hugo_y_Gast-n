@@ -1,4 +1,4 @@
-class Reserva(Cancha):
+class Reserva():
     def __init__(self, numero_cancha, deporte, precio, habilitada, numero_reserva, fecha):
         super().__init__(numero_cancha, deporte, precio, habilitada)
         self.numero_reserva=numero_cancha
@@ -15,3 +15,5 @@ def comprobar_cliente(cliente):
         print("No puedes reservar: ")
     else:
         print("Si puedes reservar")
+
+crear_reserva(nueva_cancha)
