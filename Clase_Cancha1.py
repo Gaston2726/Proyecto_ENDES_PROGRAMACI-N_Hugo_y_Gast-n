@@ -23,16 +23,27 @@ def crear_cancha():
         habilitada = False
     cancha = Cancha(numero_cancha, deporte, precio, habilitada)
     return cancha
-def añadir_a_lista_cancha(cancha):
+def agregar_cancha(cancha):
+    for c in lista_cancha:
+        if c.numero_cancha == cancha.numero_cancha:
+            print(f"La cancha número {cancha.numero_cancha} ya está registrada.")
+            return
     lista_cancha.append(cancha)
-    print("EN la lista de canchas hay: ",len(lista_cancha))
+    print(f"Cancha número {cancha.numero_cancha} agregada.")
+
+def listar_canchas_por_deporte(deporte):
+    canchas_deporte = [cancha for cancha in lista_cancha if cancha.deporte == deporte]
+    if canchas_deporte:
+        for cancha in canchas_deporte:
+            print(cancha)
+    else:
 
 
 
 nueva_cancha = crear_cancha()
 print("Cancha habilitada:", nueva_cancha.habilitada)#dice si esta habilitada o no 
 añadir_a_lista_cancha(nueva_cancha)
-crear_reserva(nueva_cancha)
+
 
 
 class Centro():
@@ -41,7 +52,7 @@ class Centro():
         self.direccion=direccion
         lista_cancha1=[]
         lista_clientes=[]
-    
+"""
 def menu():
     centro=Centro
     centro.nombre_centro=input("Dime el nombre del centro: ")
@@ -80,6 +91,7 @@ def menu():
             break
 
 #ac
+"""
 """
 class Reserva():
     def __init__(self, num_reserva, fecha, cliente, cancha):
