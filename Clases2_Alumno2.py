@@ -43,6 +43,7 @@ class Empleados:
             print("El cliente no se ha encontrado")
 
 def menu():
+    empleados = Empleados()
     print("Bienvenido a la gestión de empleados")
     print("1.- Registrar empleado")
     print("2.- Asignar tarea")
@@ -52,12 +53,15 @@ def menu():
     while True:
         opcion = int(input("Escoge una opción: "))
         if opcion == 1:
-            Empleados.registrar_empleado()
+            empleados.registrar_empleado()
         elif opcion == 2:
-            Empleados.asignar_tarea()
+            empleados.asignar_tarea()
         elif opcion == 3:
-            Empleados.mostrar_empleados_desocupados()
+            empleados.mostrar_empleados_desocupados()
         elif opcion == 4:
-            Empleados.eliminar_empleado()
+            empleados.eliminar_empleado()
         elif opcion == 5:
-            print("Adios")
+            print("Adiós")
+            break
+        else:
+            print("Opción no válida, por favor elige otra vez.")
