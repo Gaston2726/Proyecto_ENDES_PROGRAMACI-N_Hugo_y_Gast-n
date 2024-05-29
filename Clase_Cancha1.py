@@ -27,23 +27,7 @@ def añadir_a_lista_cancha(cancha):
     lista_cancha.append(cancha)
     print("EN la lista de canchas hay: ",len(lista_cancha))
 
-class Reserva(Cancha):
-    def __init__(self, numero_cancha, deporte, precio, habilitada, numero_reserva, fecha):
-        super().__init__(numero_cancha, deporte, precio, habilitada)
-        self.numero_reserva=numero_cancha
-        self.fecha=fecha
-def crear_reserva(cancha):
-    numero_reserva=int(input("Dime el numero de la reserva: "))
-    fecha=input("Dime para que fecha quieres la reserva: ")
-    reserva = Reserva(numero_reserva, fecha)
-    cancha.lista_reserva.append(reserva)
 
-def comprobar_cliente(cliente):
-    saldo=int(input("Dime tu saldo: "))
-    if saldo <= -2000:
-        print("No puedes reservar: ")
-    else:
-        print("Si puedes reservar")
 
 nueva_cancha = crear_cancha()
 print("Cancha habilitada:", nueva_cancha.habilitada)#dice si esta habilitada o no 
@@ -66,11 +50,29 @@ def menu():
     op1_menu=int(input("Dime que opcion eliges del menu: "))
     while op1_menu!= 5:
         if op1_menu==1:
-            pass
+            print("1 .-Crear cancha\n2 .-Agregar cancha\n3 .-Listar canchas según el tipo de deporte\n4 .-Quitar cancha de lista centro")
+            op2_menu=int(input("Dime que opcione eliges del submenu canchas: "))
+            if op2_menu==1:
+                crear_cancha()
+            elif op2_menu==2:
+                añadir_a_lista_cancha()
+            elif op2_menu==3:
+                pass
+            elif op2_menu==4:
+                pass
         elif op1_menu==2:
             pass
         elif op1_menu==3:
-            pass
+            print("1 .-Crear reserva\n2 .-Listar reserva actuales de cancha\n3 .-Listar reservas de un cliente\n4 .-Mostrar saldo de un cliente")
+            op4_menu=int(input("Dime que opcion eliges del submenu reservas: "))
+            if op2_menu==1:
+                crear_reserva()
+            elif op2_menu==2:
+                comprobar_cliente()
+            elif op2_menu==3:
+                pass
+            elif op2_menu==4:
+                pass           
         elif op1_menu==4:
             pass
         elif op1_menu==5:
