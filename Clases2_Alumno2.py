@@ -1,4 +1,4 @@
-class Empleados():
+class Empleados:
     def __init__(self):
         self.lista_tareas = {}
 
@@ -8,27 +8,31 @@ class Empleados():
         apellido2 = input("Escribe el segundo apellido: ")
         desocupado = input("¿Está desocupado? (SI/NO): ").upper() == 'SI'
         
-        self.lista_tareas[nombre] = {'nombre': nombre, 'apellido1': apellido1, 'apellido2': apellido2, 'desocupado': desocupado}
+        self.lista_tareas[nombre] = {
+            'nombre': nombre,
+            'apellido1': apellido1,
+            'apellido2': apellido2,
+            'desocupado': desocupado,
+            'tareas': []
+        }
         print("El cliente se ha creado")
 
     def asignar_tarea(self):
         nombre = input("Escribe el nombre del empleado al que deseas asignar la tarea: ")
         if nombre in self.lista_tareas:
             tarea = input("Escribe la tarea que deseas asignar: ")
-            if 'tareas' not in self.lista_tareas[nombre]:
-                self.lista_tareas[nombre]['tareas'] = [tarea]
-            else:
-                self.lista_tareas[nombre]['tareas'].append(tarea)
+            self.lista_tareas[nombre]['tareas'].append(tarea)
             print(f"Tarea asignada a {nombre}: {tarea}")
         else:
             print("El empleado no está en la lista de tareas.")
 
-    def mostrar_clientes(self):
+    def mostrar_empleados_desocupados(self):
         if not self.lista_tareas:
             print("No hay clientes registrados")
         else:
             for nombre, detalles in self.lista_tareas.items():
-                print(f"Nombre: {nombre}, Apellidos: {detalles['apellido1']} {detalles['apellido2']}, Ocupado: {detalles['desocupado']}")
+                desocupado_str = "SI" if detalles['desocupado'] else "NO"
+                print(f"Nombre: {nombre}, Apellidos: {detalles['apellido1']} {detalles['apellido2']}, Ocupado: {desocupado_str}")
 
     def eliminar_empleado(self):
         nombre = input("Escribe el nombre del cliente que desea eliminar: ")
@@ -38,4 +42,22 @@ class Empleados():
         else:
             print("El cliente no se ha encontrado")
 
-#cabron comentalo toca algo
+def menu():
+    print("Bienvenido a la gestión de empleados")
+    print("1.- Registrar empleado")
+    print("2.- Asignar tarea")
+    print("3.- Mostrar empleados desocupados")
+    print("4.- Quitar empleado")
+    print("5.- Salir")
+    while True:
+        opcion = int(input("Escoge una opción: "))
+        if opcion == 1:
+            Empleados.registrar_empleado()
+        elif opcion == 2:
+            Empleados.asignar_tarea()
+        elif opcion == 3:
+            Empleados.mostrar_empleados_desocupados()
+        elif opcion == 4:
+            Empleados.eliminar_empleado()
+        elif opcion == 5:
+            print("Adios")
