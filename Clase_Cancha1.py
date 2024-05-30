@@ -30,6 +30,10 @@ class Cancha:
             print("No hay canchas disponibles para el deporte:", deporte)
     
     def eliminar_cancha_de_centro(lista_cancha,numero_cancha):
+        """ 
+        Se elimina la cancha de la lista de centro de cancha, pero hay una condicion y es que si tiene reserva no 
+        se elimina, pero si no tiene se puede eliminar.
+        """
         for cancha in lista_cancha:
             if cancha.numero_cancha == numero_cancha:
                 if cancha.lista_reserva:
