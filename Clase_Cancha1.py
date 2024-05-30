@@ -52,3 +52,40 @@ def crear_cancha():
     habilitada = input("Dime si esta habilitada diciendo si o no: ").strip().lower() == 'si'
     cancha = Cancha(numero_cancha, deporte, precio, habilitada)
     return cancha
+
+def menu():
+    lista_canchas = []
+    opcion = input("Elige una opción: ")
+    while opcion!=5:
+        print("\nMenú de Opciones")
+        print("1. Crear una cancha")
+        print("2. Agregar una cancha a la lista del centro")
+        print("3. Listar las canchas totales según un tipo de deporte")
+        print("4. Quitar una cancha de la lista del centro")
+        print("5. Salir")
+        opcion = input("Elige una opción: ")
+
+        if opcion == '1':
+            nueva_cancha = crear_cancha()
+            print(f"Cancha creada: {nueva_cancha.numero_cancha}, {nueva_cancha.deporte}, Precio: {nueva_cancha.precio}, Habilitada: {nueva_cancha.habilitada}")
+
+        elif opcion == '2':
+            if 'nueva_cancha' in locals():
+                nueva_cancha.agregar_cancha(lista_canchas)
+            else:
+                print("Primero debes crear una cancha.")
+
+        elif opcion == '3':
+            deporte = input("Dime el deporte para listar las canchas: ")
+            Cancha.lista_canchas_deporte(lista_canchas, deporte)
+
+        elif opcion == '4':
+            numero_cancha = int(input("Dime el número de la cancha que quieres eliminar: "))
+            Cancha.eliminar_cancha_de_centro(lista_canchas, numero_cancha)
+
+        elif opcion == '5':
+            print("Saliendo del programa.")
+            break
+    else:
+        print("Sales del menu cancha")
+
