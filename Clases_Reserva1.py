@@ -51,17 +51,15 @@ def crear_reserva(lista_reservas, lista_clientes, lista_canchas):
     lista_reservas.append(reserva)
     cancha.lista_reserva.append(reserva)
     print("Reserva creada exitosamente.")
+    
 def menu_reservas():
- 
     print("1. Crear reserva")
     print("2. Listar reservas actuales de una cancha")
     print("3. Listar reservas de un cliente")
     print("4. Mostrar saldo de un cliente")
     print("5. Salir del menú")
-    pcion = int(input("Selecciona una opción: "))
-
-    while opcion !=5:
-        opcion = int(input("Selecciona una opción: "))
+    opcion = int(input("Selecciona una opción: "))
+    while opcion != 5:
 
         if opcion == 1:
             crear_reserva(lista_reservas, lista_clientes, lista_canchas)
@@ -95,19 +93,3 @@ def menu_reservas():
             break
         else:
             print("Opción no válida. Por favor, selecciona una opción válida.")
-
-menu_reservas()
-
-"""
-def menu_reservs():
-    print("1 .-Crear reserva\n2 .-Listar reservas actuales de una cancha\n3 .-Listar reservas de un cliente\n 4.-Mostrar saldo de un cliente\5 salir del menu ")
-    opcion=int(input("Dime una de las opciones: "))
-    while opcion!=5:
-        if opcion==1:
-            crear_reserva()
-        elif opcion==2:
-            Reserva.listar_reservas()
-        elif opcion==3:
-        elif opcion==4:
-        elif opcion==5:
-"""

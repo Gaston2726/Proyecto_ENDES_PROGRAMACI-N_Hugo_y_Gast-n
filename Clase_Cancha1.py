@@ -6,117 +6,94 @@ class Cancha:
         self.habilitada = habilitada
         self.lista_reserva = []
         self.lista_empleado = []
+
+    def __str__(self):
+        return f"Cancha creada: Número {self.numero_cancha}, Deporte: {self.deporte}, Precio: {self.precio}, Habilitada: {self.habilitada}"
     
-    def agregar_cancha(self,lista_cancha):
-        """ 
-        Aqui se supone que se agregan los datos de cancha en la lista de centro
+    def agregar_cancha(self, lista_cancha):
+        """
+        Agrega una cancha a la lista de canchas.
         """
         for cancha in lista_cancha:
-            if cancha.numero_cancha==self.numero_cancha:
-                print(f"La cancha que quieres introducir {self.numero_cancha},esta ya dentro de esta lista")
-            lista_cancha.append(self)
-            print(f"La cancha con el numero{self.numero_cancha}, esta agregada")
-    
-    def lista_canchas_deporte(listas_cancha,deporte):
-        """ 
-        Aqui listo las canchas según el deporte que sea
+            if cancha.numero_cancha == self.numero_cancha:
+                print(f"La cancha {self.numero_cancha} ya está en la lista.")
+                return
+        lista_cancha.append(self)
+        print(f"La cancha {self.numero_cancha} ha sido agregada.")
+
+    @staticmethod
+    def lista_canchas_deporte(lista_canchas):
         """
-        list_depor__cancha=[cancha for cancha in listas_cancha if cancha.deporte == deporte]#crea una lista segun deporte
-        if list_depor__cancha:
-            for cancha in list_depor__cancha:
-                print(cancha)
+        Lista las canchas según el deporte especificado.
+        """
+        deporte = input("Dime el deporte para listar las canchas: ")
+        canchas_deporte = [cancha for cancha in lista_canchas if cancha.deporte == deporte]
+        if canchas_deporte:
+            for cancha in canchas_deporte:
+                print(f"Número de Cancha: {cancha.numero_cancha}, Deporte: {cancha.deporte}, Precio: {cancha.precio}, Habilitada: {cancha.habilitada}")
         else:
-            print("No hay canchas disponibles para el deporte:", deporte)
-    
-    def eliminar_cancha_de_centro(lista_cancha,numero_cancha):
-        """ 
-        Se elimina la cancha de la lista de centro de cancha, pero hay una condicion y es que si tiene reserva no 
-        se elimina, pero si no tiene se puede eliminar.
+            print(f"No hay canchas disponibles para el deporte: {deporte}")
+
+    @staticmethod
+    def eliminar_cancha_de_centro(lista_canchas):
         """
-        for cancha in lista_cancha:
+        Elimina una cancha de la lista de canchas del centro.
+        """
+        numero_cancha = int(input("Dime el número de la cancha que quieres eliminar: "))
+        for cancha in lista_canchas:
             if cancha.numero_cancha == numero_cancha:
                 if cancha.lista_reserva:
-                    print("No se puede quitar la cancha, ya tiene reserva el :", numero_cancha)
+                    print(f"No se puede eliminar la cancha {numero_cancha}, tiene reservas.")
                 else:
-                    lista_cancha.remove(cancha)
-                    print("Cancha eliminada de la lista", numero_cancha)
-        else:
-            print("No esta registrada")
+                    lista_canchas.remove(cancha)
+                    print(f"Cancha {numero_cancha} eliminada de la lista.")
+                return
+        print("La cancha no está registrada.")
 
 
 def crear_cancha():
-    numero_cancha = int(input("Dime el numero de la cancha: "))
-    deporte = input("Dime el deporte que vas a realizar: ")
+    """
+    Crea una nueva instancia de Cancha.
+    """
+    numero_cancha = int(input("Dime el número de la cancha: "))
+    deporte = input("Dime el deporte que se va a realizar: ")
     precio = float(input("Dime el precio de la cancha: "))
-    habilitada = input("Dime si esta habilitada diciendo si o no: ").strip().lower() == 'si'
-    cancha = Cancha(numero_cancha, deporte, precio, habilitada)
-    return cancha
+    habilitada = input("Dime si está habilitada (sí o no): ").strip().lower() == 'si'
+    cancha=Cancha(numero_cancha, deporte, precio, habilitada)
+    print("La cancha creada es:", cancha)
 
-def menu():
+def menu_cancha():
+    """
+    Muestra un menú para la gestión de las canchas.
+    """
+    lista_canchas = []
+    print("\nMenú de Opciones")
+    print("1. Crear una cancha")
+    print("2. Agregar una cancha a la lista del centro")
+    print("3. Listar las canchas totales según un tipo de deporte")
+    print("4. Quitar una cancha de la lista del centro")
+    print("5. Salir")
+    opcion =int( input("Elige una opción: "))
 
-    opcion = input("Elige una opción: ")
     while opcion!=5:
-        print("\nMenú de Opciones")
-        print("1. Crear una cancha")
-        print("2. Agregar una cancha a la lista del centro")
-        print("3. Listar las canchas totales según un tipo de deporte")
-        print("4. Quitar una cancha de la lista del centro")
-        print("5. Salir")
-        opcion = input("Elige una opción: ")
-
-        if opcion == '1':
+        if opcion == 1:
             nueva_cancha = crear_cancha()
-            print(f"Cancha creada: {nueva_cancha.numero_cancha}, {nueva_cancha.deporte}, Precio: {nueva_cancha.precio}, Habilitada: {nueva_cancha.habilitada}")
-
-        elif opcion == '2':
-            if 'nueva_cancha' in locals():
+            lista_canchas.append(nueva_cancha)
+        elif opcion == 2:
+            if lista_canchas:
                 nueva_cancha.agregar_cancha(lista_canchas)
             else:
                 print("Primero debes crear una cancha.")
-
-        elif opcion == '3':
-            deporte = input("Dime el deporte para listar las canchas: ")
-            Cancha.lista_canchas_deporte(lista_canchas, deporte)
-
-        elif opcion == '4':
-            numero_cancha = int(input("Dime el número de la cancha que quieres eliminar: "))
-            Cancha.eliminar_cancha_de_centro(lista_canchas, numero_cancha)
-
-        elif opcion == '5':
+        elif opcion == 3:
+            Cancha.lista_canchas_deporte(lista_canchas)
+        elif opcion == 4:
+            Cancha.eliminar_cancha_de_centro(lista_canchas)
+        elif opcion == 5:
             print("Saliendo del programa.")
             break
-    else:
-        print("Sales del menu cancha")
-
-
-class Reserva():
-    def __init__(self,numero_reserva,fecha):
-        self.numero_reserva=numero_reserva
-        self.fecha=fecha
-    
-
-    def comprobar_cliente(self):
-        saldo = int(input("Dime tu saldo: "))
-        if saldo <= -2000:
-            print("No puedes reservar.")
-            return False
         else:
-            print("Puedes reservar.")
-            return True
-        
-    def listar_reservas(self):
-        
+            print("Opción no válida, por favor elige otra vez.")
+        opcion = int(input("Elige una opción: "))
 
-def crear_reserva():
-    numero_reserva=int(input("Dime el numero de reserva: "))
-    fecha=input("Dime una fecha de reserva: ")
-    reserva=Reserva(numero_reserva,fecha)
-    if not cancha.habilitada:
-        print("La cancha no está habilitada para reservas.")
-        return
-    if cancha.lista_reserva:
-        print("La cancha ya tiene una reserva.")
-        return
-    reserva = Reserva(cancha.numero_cancha, cancha.deporte, cancha.precio, cancha.habilitada, numero_reserva, fecha)
-    cancha.lista_reserva.append(reserva)
-    print("Reserva creada exitosamente.")
+menu_cancha()
+
