@@ -59,41 +59,50 @@ def crear_cancha():
     deporte = input("Dime el deporte que se va a realizar: ")
     precio = float(input("Dime el precio de la cancha: "))
     habilitada = input("Dime si está habilitada (sí o no): ").strip().lower() == 'si'
-    cancha=Cancha(numero_cancha, deporte, precio, habilitada)
+    cancha = Cancha(numero_cancha, deporte, precio, habilitada)
     print("La cancha creada es:", cancha)
+    return cancha
+
 
 def menu_cancha():
     """
     Muestra un menú para la gestión de las canchas.
     """
     lista_canchas = []
+
     print("\nMenú de Opciones")
     print("1. Crear una cancha")
     print("2. Agregar una cancha a la lista del centro")
     print("3. Listar las canchas totales según un tipo de deporte")
     print("4. Quitar una cancha de la lista del centro")
     print("5. Salir")
-    opcion =int( input("Elige una opción: "))
 
-    while opcion!=5:
+    opcion = int(input("Elige una opción: "))
+
+    while opcion != 5:
         if opcion == 1:
-            nueva_cancha = crear_cancha()
-            lista_canchas.append(nueva_cancha)
+            cancha = crear_cancha()
+            lista_canchas.append(cancha)
         elif opcion == 2:
             if lista_canchas:
-                nueva_cancha.agregar_cancha(lista_canchas)
+                numero_cancha = int(input("Ingrese el número de cancha: "))
+                if not any(cancha.numero_cancha == numero_cancha for cancha in lista_canchas):
+                    nueva_cancha = crear_cancha()
+                    lista_canchas.append(nueva_cancha)
+                else:
+                    print("La cancha ya está registrada en la lista.")
             else:
                 print("Primero debes crear una cancha.")
         elif opcion == 3:
             Cancha.lista_canchas_deporte(lista_canchas)
         elif opcion == 4:
             Cancha.eliminar_cancha_de_centro(lista_canchas)
-        elif opcion == 5:
-            print("Saliendo del programa.")
-            break
         else:
             print("Opción no válida, por favor elige otra vez.")
+        
         opcion = int(input("Elige una opción: "))
 
-menu_cancha()
+    print("Saliendo del programa.")
 
+menu_cancha()
+ 
