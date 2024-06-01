@@ -32,7 +32,7 @@ class Centro:
             elif op1_menu == 2:
                 Centro.gestion_cliente(centro)
             elif op1_menu == 3:
-                Centro.gestion_reserva(centro)
+                Centro.gestion_reservas(centro)
                 print("Gestión de reserva no implementada aún.")
             elif op1_menu == 4:
                 Centro.gestion_empleados(centro)
@@ -74,8 +74,6 @@ class Centro:
             else:
                 print("Opción no válida, por favor elige otra vez.")
 
-
-
     @staticmethod
     def gestion_cliente(centro):
         print("1.- Crear cliente")
@@ -101,7 +99,7 @@ class Centro:
                 print("Opción no válida, por favor elige otra vez.")
 
     @staticmethod
-    def menu_reservas(centro):
+    def gestion_reservas(centro):
         print("\nMenú de Reservas")
         print("1. Crear una reserva")
         print("2. Listar reservas de una cancha")
@@ -126,6 +124,7 @@ class Centro:
                 break
             else:
                 print("Opción no válida, por favor elige otra vez.")
+
     @staticmethod
     def gestion_empleados(centro):
         print("1.- Registrar empleado")
