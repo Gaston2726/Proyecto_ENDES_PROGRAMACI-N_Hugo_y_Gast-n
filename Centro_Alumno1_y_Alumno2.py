@@ -7,7 +7,7 @@ class Centro:
     def __init__(self, nombre_centro, direccion):
         self.nombre_centro = nombre_centro
         self.direccion = direccion
-        self.lista_cancha = Gestion_cancha.Cancha.lista_cancha
+        self.lista_cancha = []
         self.lista_clientes = Gestion_cliente.Cliente.lista_clientes
         self.lista_empleados = Gestion_empleados.Empleados().lista_tareas
 
