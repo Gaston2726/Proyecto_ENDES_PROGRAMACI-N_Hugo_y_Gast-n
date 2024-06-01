@@ -30,6 +30,7 @@ class Centro:
             elif op1_menu == 2:
                 Centro.gestion_cliente(centro)
             elif op1_menu == 3:
+                #Gestión de reserva
                 print("Gestión de reserva no implementada aún.")
             elif op1_menu == 4:
                 Centro.gestion_empleados(centro)
