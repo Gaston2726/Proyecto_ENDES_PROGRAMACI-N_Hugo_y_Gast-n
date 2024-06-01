@@ -4,7 +4,7 @@ import Clase_Cancha1 as Gestion_cancha
 import Clases_Reserva1 as Gestion_reserva
 
 class Centro:
-    def __init__(self, nombre_centro, direccion):
+    def _init_(self, nombre_centro, direccion):
         self.nombre_centro = nombre_centro
         self.direccion = direccion
         self.lista_cancha = Gestion_cancha.Cancha.lista_cancha
@@ -28,12 +28,10 @@ class Centro:
             op1_menu = int(input("Dime qué opción eliges del menú: "))
             if op1_menu == 1:
                 Centro.gestion_cancha(centro)
-                print("Gestión de canchas no implementada aún.")
             elif op1_menu == 2:
                 Centro.gestion_cliente(centro)
             elif op1_menu == 3:
-                Centro.gestion_reservas(centro)
-                print("Gestión de reserva no implementada aún.")
+                Centro.menu_reservas(centro)
             elif op1_menu == 4:
                 Centro.gestion_empleados(centro)
             elif op1_menu == 5:
@@ -99,7 +97,7 @@ class Centro:
                 print("Opción no válida, por favor elige otra vez.")
 
     @staticmethod
-    def gestion_reservas(centro):
+    def menu_reservas(centro):
         print("\nMenú de Reservas")
         print("1. Crear una reserva")
         print("2. Listar reservas de una cancha")
