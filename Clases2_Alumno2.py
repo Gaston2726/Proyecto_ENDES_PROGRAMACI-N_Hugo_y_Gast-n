@@ -50,18 +50,21 @@ def menu():
     print("3.- Mostrar empleados desocupados")
     print("4.- Quitar empleado")
     print("5.- Salir")
-    while True:
-        opcion = int(input("Escoge una opción: "))
-        if opcion == 1:
-            empleados.registrar_empleado()
-        elif opcion == 2:
-            empleados.asignar_tarea()
-        elif opcion == 3:
-            empleados.mostrar_empleados_desocupados()
-        elif opcion == 4:
-            empleados.eliminar_empleado()
-        elif opcion == 5:
-            print("Adiós")
-            break
-        else:
-            print("Opción no válida, por favor elige otra vez.")
+    try:
+        while True:
+            opcion = int(input("Escoge una opción: "))
+            if opcion == 1:
+                empleados.registrar_empleado()
+            elif opcion == 2:
+                empleados.asignar_tarea()
+            elif opcion == 3:
+                empleados.mostrar_empleados_desocupados()
+            elif opcion == 4:
+                empleados.eliminar_empleado()
+            elif opcion == 5:
+                print("Adiós")
+                break
+            else:
+                print("Opción no válida, por favor elige otra vez.")
+    except ValueError as err:
+        print("La opción debe ser un entero", err)
