@@ -28,12 +28,12 @@ class Centro:
             while True:
                 op1_menu = int(input("Dime qué opción eliges del menú: "))
                 if op1_menu == 1:
-                    # Gestión de canchas
+                    Centro.gestion_cancha(centro)
                     print("Gestión de canchas no implementada aún.")
                 elif op1_menu == 2:
                     Centro.gestion_cliente(centro)
                 elif op1_menu == 3:
-                    #Gestión de reserva
+                    Centro.menu_reservas(centro)
                     print("Gestión de reserva no implementada aún.")
                 elif op1_menu == 4:
                     Centro.gestion_empleados(centro)
