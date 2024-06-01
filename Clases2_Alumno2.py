@@ -3,11 +3,14 @@ class Empleados:
         self.lista_tareas = {}
 
     def registrar_empleado(self):
-        nombre = input("Escribe tu nombre o el nombre del cliente: ")
-        apellido1 = input("Escribe el primer apellido: ")
-        apellido2 = input("Escribe el segundo apellido: ")
-        desocupado = input("¿Está desocupado? (SI/NO): ").upper() == 'SI'
-        
+        try:
+            nombre = input("Escribe tu nombre o el nombre del cliente: ")
+            apellido1 = input("Escribe el primer apellido: ")
+            apellido2 = input("Escribe el segundo apellido: ")
+            desocupado = input("¿Está desocupado? (SI/NO): ").upper() == 'SI'
+        except ValueError as err:
+            print("Solo strings", err)
+            
         self.lista_tareas[nombre] = {
             'nombre': nombre,
             'apellido1': apellido1,
