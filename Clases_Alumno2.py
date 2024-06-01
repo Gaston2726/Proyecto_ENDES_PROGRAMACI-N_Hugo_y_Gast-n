@@ -10,11 +10,14 @@ class Cliente:
         self.identificador = identificador
 
     def crear_cliente(self):
-        self.nombre = input("Escribe tu nombre o el nombre del cliente: ")
-        self.apellido1 = input("Escribe el primer apellido: ")
-        self.apellido2 = input("Escribe el segundo apellido: ")
-        self.telefono = input("Escribe el numero de telefono: ")
-        self.identificador = input("Escribe el identificador: ")
+        try:
+            self.nombre = input("Escribe tu nombre o el nombre del cliente: ")
+            self.apellido1 = input("Escribe el primer apellido: ")
+            self.apellido2 = input("Escribe el segundo apellido: ")
+            self.telefono = input("Escribe el numero de telefono: ")
+            self.identificador = input("Escribe el identificador: ")
+        except ValueError as err:
+            print("Solo strings", err)
         
         Cliente.lista_clientes[self.identificador] = {
             'nombre': self.nombre,
@@ -62,18 +65,21 @@ def menu():
     print("5.- Salir")
 
     cliente = Cliente()
-    while True:
-        opcion = int(input("Escoge una opción: "))
-        if opcion == 1:
-            cliente.crear_cliente()
-        elif opcion == 2:
-            cliente.mostrar_clientes_morosos()
-        elif opcion == 3:
-            cliente.eliminar_cliente()
-        elif opcion == 4:
-            Cliente.agregar_cliente_centro()
-        elif opcion == 5:
-            print("Adiós")
-            break
-        else:
-            print("Opción no válida, por favor elige otra vez.")
+    try:
+        while True:
+            opcion = int(input("Escoge una opción: "))
+            if opcion == 1:
+                cliente.crear_cliente()
+            elif opcion == 2:
+                cliente.mostrar_clientes_morosos()
+            elif opcion == 3:
+                cliente.eliminar_cliente()
+            elif opcion == 4:
+                Cliente.agregar_cliente_centro()
+            elif opcion == 5:
+                print("Adiós")
+                break
+            else:
+                print("Opción no válida, por favor elige otra vez.")
+    except ValueError as err:
+        print("La opción debe ser un entero", err)
