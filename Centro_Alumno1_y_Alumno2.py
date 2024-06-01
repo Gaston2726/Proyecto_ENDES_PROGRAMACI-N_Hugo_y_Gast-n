@@ -53,29 +53,32 @@ class Centro:
         print("4.- Eliminar cancha de centro")
         print("5.- Volver al menú principal")
 
-        while True:
-            opcion = int(input("Elige una opción: "))
-            if opcion == 1:
-                cancha = Gestion_cancha.Cancha.crear_cancha()
-                centro.lista_cancha.append(cancha)
-            elif opcion == 2:
-                if centro.lista_cancha:
-                    numero_cancha = int(input("Ingrese el número de cancha: "))
-                    if not any(cancha.numero_cancha == numero_cancha for cancha in centro.lista_cancha):
-                        nueva_cancha = Gestion_cancha.Cancha.crear_cancha()
-                        centro.lista_cancha.append(nueva_cancha)
+        try:
+            while True:
+                opcion = int(input("Elige una opción: "))
+                if opcion == 1:
+                    cancha = Gestion_cancha.Cancha.crear_cancha()
+                    centro.lista_cancha.append(cancha)
+                elif opcion == 2:
+                    if centro.lista_cancha:
+                        numero_cancha = int(input("Ingrese el número de cancha: "))
+                        if not any(cancha.numero_cancha == numero_cancha for cancha in centro.lista_cancha):
+                            nueva_cancha = Gestion_cancha.Cancha.crear_cancha()
+                            centro.lista_cancha.append(nueva_cancha)
+                        else:
+                            print("La cancha ya está registrada en la lista.")
                     else:
-                        print("La cancha ya está registrada en la lista.")
+                        print("Primero debes crear una cancha.")
+                elif opcion == 3:
+                    Gestion_cancha.Cancha.lista_canchas_deporte(centro.lista_cancha)
+                elif opcion == 4:
+                    Gestion_cancha.Cancha.eliminar_cancha_de_centro(centro.lista_cancha)
+                elif opcion == 5:
+                    break
                 else:
-                    print("Primero debes crear una cancha.")
-            elif opcion == 3:
-                Gestion_cancha.Cancha.lista_canchas_deporte(centro.lista_cancha)
-            elif opcion == 4:
-                Gestion_cancha.Cancha.eliminar_cancha_de_centro(centro.lista_cancha)
-            elif opcion == 5:
-                break
-            else:
-                print("Opción no válida, por favor elige otra vez.")
+                    print("Opción no válida, por favor elige otra vez.")
+        except ValueError as err:
+            print("La opcion es incorrecta", err)
 
     @staticmethod
     def gestion_cliente(centro):
@@ -114,22 +117,25 @@ class Centro:
         print("5. Mostrar saldo de un cliente")
         print("6. Volver al menú principal")
 
-        while True:
-            opcion = int(input("Elige una opción: "))
-            if opcion == 1:
-                Gestion_reserva.Reserva.crear_reserva(centro.lista_reservas, centro.lista_clientes, centro.lista_canchas)
-            elif opcion == 2:
-                Gestion_reserva.Reserva.listar_reservas_cancha(centro.lista_reservas, centro.lista_canchas)
-            elif opcion == 3:
-                Gestion_reserva.Reserva.listar_reservas_cliente(centro.lista_reservas, centro.lista_clientes)
-            elif opcion == 4:
-                Gestion_reserva.Reserva.registrar_pago(centro.lista_clientes)
-            elif opcion == 5:
-                Gestion_reserva.Reserva.mostrar_saldo_cliente(centro.lista_clientes)
-            elif opcion == 6:
-                break
-            else:
-                print("Opción no válida, por favor elige otra vez.")
+        try:
+            while True:
+                opcion = int(input("Elige una opción: "))
+                if opcion == 1:
+                    Gestion_reserva.Reserva.crear_reserva(centro.lista_reservas, centro.lista_clientes, centro.lista_canchas)
+                elif opcion == 2:
+                    Gestion_reserva.Reserva.listar_reservas_cancha(centro.lista_reservas, centro.lista_canchas)
+                elif opcion == 3:
+                    Gestion_reserva.Reserva.listar_reservas_cliente(centro.lista_reservas, centro.lista_clientes)
+                elif opcion == 4:
+                    Gestion_reserva.Reserva.registrar_pago(centro.lista_clientes)
+                elif opcion == 5:
+                    Gestion_reserva.Reserva.mostrar_saldo_cliente(centro.lista_clientes)
+                elif opcion == 6:
+                    break
+                else:
+                    print("Opción no válida, por favor elige otra vez.")
+        except ValueError as err:
+            print("La opción es incorrecta", err)
 
     @staticmethod
     def gestion_empleados(centro):
