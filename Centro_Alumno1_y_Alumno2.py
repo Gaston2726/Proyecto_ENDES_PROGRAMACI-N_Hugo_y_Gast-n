@@ -22,23 +22,26 @@ class Centro:
         print("4 .- Gestión de empleado")
         print("5 .- Salir del programa")
 
-        while True:
-            op1_menu = int(input("Dime qué opción eliges del menú: "))
-            if op1_menu == 1:
-                # Gestión de canchas
-                print("Gestión de canchas no implementada aún.")
-            elif op1_menu == 2:
-                Centro.gestion_cliente(centro)
-            elif op1_menu == 3:
-                #Gestión de reserva
-                print("Gestión de reserva no implementada aún.")
-            elif op1_menu == 4:
-                Centro.gestion_empleados(centro)
-            elif op1_menu == 5:
-                print("Se cierra el programa")
-                break
-            else:
-                print("Opción no válida, por favor elige otra vez.")
+        try:
+            while True:
+                op1_menu = int(input("Dime qué opción eliges del menú: "))
+                if op1_menu == 1:
+                    # Gestión de canchas
+                    print("Gestión de canchas no implementada aún.")
+                elif op1_menu == 2:
+                    Centro.gestion_cliente(centro)
+                elif op1_menu == 3:
+                    #Gestión de reserva
+                    print("Gestión de reserva no implementada aún.")
+                elif op1_menu == 4:
+                    Centro.gestion_empleados(centro)
+                elif op1_menu == 5:
+                    print("Hasta pronto")
+                    break
+                else:
+                    print("Opción no válida, por favor elige otra vez.")
+        except ValueError as err:
+            print("La opción debe ser un numero entero", err)
 
     @staticmethod
     def gestion_cliente(centro):
@@ -49,20 +52,23 @@ class Centro:
         print("5.- Volver al menú principal")
 
         cliente = Gestion_cliente.Cliente()
-        while True:
-            opcion = int(input("Escoge una opción: "))
-            if opcion == 1:
-                cliente.crear_cliente()
-            elif opcion == 2:
-                cliente.mostrar_clientes_morosos()
-            elif opcion == 3:
-                cliente.eliminar_cliente()
-            elif opcion == 4:
-                Gestion_cliente.Cliente.agregar_cliente_centro()
-            elif opcion == 5:
-                break
-            else:
-                print("Opción no válida, por favor elige otra vez.")
+        try:
+            while True:
+                opcion = int(input("Escoge una opción: "))
+                if opcion == 1:
+                    cliente.crear_cliente()
+                elif opcion == 2:
+                    cliente.mostrar_clientes_morosos()
+                elif opcion == 3:
+                    cliente.eliminar_cliente()
+                elif opcion == 4:
+                    Gestion_cliente.Cliente.agregar_cliente_centro()
+                elif opcion == 5:
+                    break
+                else:
+                    print("Opción no válida, por favor elige otra vez.")
+        except ValueError as err:
+            print("La opción debe ser un entero", err)
 
     @staticmethod
     def gestion_empleados(centro):
@@ -73,19 +79,22 @@ class Centro:
         print("5.- Volver al menú principal")
 
         empleados = Gestion_empleados.Empleados()
-        while True:
-            opcion = int(input("Escoge una opción: "))
-            if opcion == 1:
-                empleados.registrar_empleado()
-            elif opcion == 2:
-                empleados.asignar_tarea()
-            elif opcion == 3:
-                empleados.mostrar_empleados_desocupados()
-            elif opcion == 4:
-                empleados.eliminar_empleado()
-            elif opcion == 5:
-                break
-            else:
-                print("Opción no válida, por favor elige otra vez.")
+        try:
+            while True:
+                opcion = int(input("Escoge una opción: "))
+                if opcion == 1:
+                    empleados.registrar_empleado()
+                elif opcion == 2:
+                    empleados.asignar_tarea()
+                elif opcion == 3:
+                    empleados.mostrar_empleados_desocupados()
+                elif opcion == 4:
+                    empleados.eliminar_empleado()
+                elif opcion == 5:
+                    break
+                else:
+                    print("Opción no válida, por favor elige otra vez.")
+        except ValueError as err:
+            print("La opción debe ser un entero", err)
 
 Centro.menu()
