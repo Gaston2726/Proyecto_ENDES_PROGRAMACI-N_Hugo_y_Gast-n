@@ -15,48 +15,57 @@ class Reserva:
         """
         Crea una reserva.
         """
-        if not cliente.habilitado:
-            print("El cliente no está habilitado para realizar reservas.")
-            return False
-        if not cancha.habilitada:
-            print("La cancha no está habilitada para reservas.")
-            return False
-        if not cancha.esta_desocupada_en_fecha(fecha):
-            print("La cancha no está desocupada en esa fecha.")
-            return False
-        if cliente.saldo < -2000:
-            print("El cliente tiene un saldo negativo mayor a -2000, no puede realizar más reservas.")
-            return False
+        try:
+            if not cliente.habilitado:
+                print("El cliente no está habilitado para realizar reservas.")
+                return False
+            if not cancha.habilitada:
+                print("La cancha no está habilitada para reservas.")
+                return False
+            if not cancha.esta_desocupada_en_fecha(fecha):
+                print("La cancha no está desocupada en esa fecha.")
+                return False
+            if cliente.saldo < -2000:
+                print("El cliente tiene un saldo negativo mayor a -2000, no puede realizar más reservas.")
+                return False
 
-        nueva_reserva = Reserva(len(lista_reservas) + 1, fecha, cliente, cancha)
-        lista_reservas.append(nueva_reserva)
-        cliente.saldo -= cancha.precio
-        print("Reserva creada exitosamente.")
-        return True
+            nueva_reserva = Reserva(len(lista_reservas) + 1, fecha, cliente, cancha)
+            lista_reservas.append(nueva_reserva)
+            cliente.saldo -= cancha.precio
+            print("Reserva creada exitosamente.")
+            return True
+        except ValueError as error:
+            print("Error", error)
 
     @staticmethod
     def listar_reservas_cancha(lista_reservas, cancha):
         """
         Lista las reservas de una cancha.
         """
-        reservas_cancha = [reserva for reserva in lista_reservas if reserva.cancha == cancha]
-        if reservas_cancha:
-            for reserva in reservas_cancha:
-                print(reserva)
-        else:
-            print("No hay reservas para esta cancha.")
+        try: 
+            reservas_cancha = [reserva for reserva in lista_reservas if reserva.cancha == cancha]
+            if reservas_cancha:
+                for reserva in reservas_cancha:
+                    print(reserva)
+            else:
+                print("No hay reservas para esta cancha.")
+        except ValueError as error:
+            print("Error", error)
 
     @staticmethod
     def listar_reservas_cliente(lista_reservas, cliente):
         """
         Lista las reservas de un cliente.
         """
-        reservas_cliente = [reserva for reserva in lista_reservas if reserva.cliente == cliente]
-        if reservas_cliente:
-            for reserva in reservas_cliente:
-                print(reserva)
-        else:
-            print("El cliente no tiene reservas.")
+        try :
+            reservas_cliente = [reserva for reserva in lista_reservas if reserva.cliente == cliente]
+            if reservas_cliente:
+                for reserva in reservas_cliente:
+                    print(reserva)
+            else:
+                print("El cliente no tiene reservas.")
+        except ValueError as error: 
+            print("Error", error)
 
     @staticmethod
     def registrar_pago(cliente, monto):
@@ -78,11 +87,13 @@ class Reserva:
         """
         Busca un cliente por nombre en la lista de clientes.
         """
-        for cliente in lista_clientes:
-            if cliente.nombre == nombre:
-                return cliente
-        return None
-
+        try:
+            for cliente in lista_clientes:
+                if cliente.nombre == nombre:
+                    return cliente
+            return None
+        except ValueError as error:
+            print("Error", error)
     @staticmethod
     def buscar_cancha_por_numero(lista_canchas, numero):
         """
@@ -114,23 +125,25 @@ def menu_reserva(lista_reservas, lista_clientes, lista_canchas):
     print("4. Registrar pago de un cliente")
     print("5. Mostrar saldo de un cliente")
     print("6. Salir")
-
-    opcion = int(input("Elige una opción: "))
-
-    while opcion != 6:
-        if opcion == 1:
-            Reserva.crear_reserva(lista_reservas, lista_clientes, lista_canchas)
-        elif opcion == 2:
-            Reserva.listar_reservas_cancha(lista_reservas, lista_canchas)
-        elif opcion == 3:
-            Reserva.listar_reservas_cliente(lista_reservas, lista_clientes)
-        elif opcion == 4:
-            Reserva.registrar_pago(lista_clientes)
-        elif opcion == 5:
-            Reserva.mostrar_saldo_cliente(lista_clientes)
-        else:
-            print("Opción no válida, por favor elige otra vez.")
-
+    try:
         opcion = int(input("Elige una opción: "))
+
+        while opcion != 6:
+            if opcion == 1:
+                Reserva.crear_reserva(lista_reservas, lista_clientes, lista_canchas)
+            elif opcion == 2:
+                Reserva.listar_reservas_cancha(lista_reservas, lista_canchas)
+            elif opcion == 3:
+                Reserva.listar_reservas_cliente(lista_reservas, lista_clientes)
+            elif opcion == 4:
+                Reserva.registrar_pago(lista_clientes)
+            elif opcion == 5:
+                Reserva.mostrar_saldo_cliente(lista_clientes)
+            else:
+                print("Opción no válida, por favor elige otra vez.")
+
+            opcion = int(input("Elige una opción: "))
+    except ValueError as error:
+        print("Error", error)
 
     print("Saliendo del menú de reservas.")
