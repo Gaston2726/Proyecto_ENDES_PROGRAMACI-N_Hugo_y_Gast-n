@@ -23,7 +23,7 @@ class Centro:
         print("3 .- Gestión de reserva")
         print("4 .- Gestión de empleado")
         print("5 .- Salir del programa")
-
+        
         while True:
             op1_menu = int(input("Dime qué opción eliges del menú: "))
             if op1_menu == 1:
