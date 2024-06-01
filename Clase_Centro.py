@@ -4,7 +4,7 @@ import Clase_Cancha1 as Gestion_cancha
 import Clases_Reserva1 as Gestion_reserva
 
 class Centro:
-    def _init_(self, nombre_centro, direccion):
+    def __init__(self, nombre_centro, direccion):
         self.nombre_centro = nombre_centro
         self.direccion = direccion
         self.lista_cancha = Gestion_cancha.Cancha.lista_cancha
